@@ -1,6 +1,8 @@
 package com.ofss.main.service;
 
+import com.ofss.main.domain.CustomerDetail;
 import com.ofss.main.domain.LoginDetail;
+import com.ofss.main.repository.CustomerDetailRepository;
 import com.ofss.main.repository.LoginDetailRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,12 @@ public class LoginDetailServiceImpl implements LoginDetailService {
 
     @Autowired
     private LoginDetailRepository loginDetailRepository;
+    
+    @Autowired
+    private CustomerDetailRepository customerDetailRepository;
+
+    @Autowired
+    private CustomerDetailService customerDetailService; 
 
     @Override
     public LoginDetail saveLoginDetail(LoginDetail loginDetail) {
@@ -22,11 +30,13 @@ public class LoginDetailServiceImpl implements LoginDetailService {
         // Implement this if you have a method in repository
         return loginDetailRepository.findByUsername(username);
     }
-
+    
+    
     @Override
     public boolean authenticate(String username, String password) {
         LoginDetail loginDetail = getLoginDetailByUsername(username);
-        if (loginDetail != null) {
+        if (loginDetail != null && loginDetail.getAttempts() < 3) {
+        	CustomerDetail customerDetail = loginDetail.getCustomerDetail();
             if (loginDetail.getPassword().equals(password)) {
                 loginDetail.setAttempts(0);
                 loginDetailRepository.save(loginDetail);
@@ -34,7 +44,7 @@ public class LoginDetailServiceImpl implements LoginDetailService {
             } else {
                 incrementLoginAttempts(username);
                 if (loginDetail.getAttempts() >= 3) {
-                    lockAccount(username);
+                	customerDetailService.lockAccount(customerDetail);
                 }
             }
         }
@@ -48,11 +58,5 @@ public class LoginDetailServiceImpl implements LoginDetailService {
             loginDetail.setAttempts(loginDetail.getAttempts() + 1);
             loginDetailRepository.save(loginDetail);
         }
-    }
-
-    @Override
-    public void lockAccount(String username) {
-        // Implement account locking logic if needed
-        // For example, you could also update the CustomerDetail entity to set lockedStatus to true
     }
 }

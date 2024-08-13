@@ -22,6 +22,8 @@ public class CustomerController {
         RegistrationDetail registeredCustomer = customerDetailService.registerCustomer(registrationDetail);
         return ResponseEntity.ok(registeredCustomer);
     }
+    
+    
 
     // Endpoint for fetching customer details by ID
     @GetMapping("/{customerId}")

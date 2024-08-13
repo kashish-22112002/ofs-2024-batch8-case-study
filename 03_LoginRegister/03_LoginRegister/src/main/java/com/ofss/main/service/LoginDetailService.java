@@ -7,5 +7,5 @@ public interface LoginDetailService {
     LoginDetail getLoginDetailByUsername(String username);
     boolean authenticate(String username, String password);
     void incrementLoginAttempts(String username);
-    void lockAccount(String username);
+  
 }

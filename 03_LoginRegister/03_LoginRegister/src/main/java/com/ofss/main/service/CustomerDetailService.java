@@ -8,4 +8,7 @@ public interface CustomerDetailService {
     CustomerDetail getCustomerDetailById(int customerId);
     CustomerDetail getCustomerDetailByEmail(String email);
     RegistrationDetail registerCustomer(RegistrationDetail registrationDetail);
+    
+    void createAccount(int customerId, String accountType);
+	void lockAccount(CustomerDetail customerDetail);
 }
