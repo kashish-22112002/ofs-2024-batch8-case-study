@@ -32,6 +32,8 @@ public class AccountDetail {
 
     @Column(name = "overdraft_amount")
     private double overdraftAmount;
+    
+    public static final double MAX_OVERDRAFT_AMOUNT = 10000.00;
 
     // Default constructor
     public AccountDetail() {}
@@ -112,6 +114,7 @@ public class AccountDetail {
     public void setOverdraftAmount(double overdraftAmount) {
         this.overdraftAmount = overdraftAmount;
     }
+    
     
     @Override
     public String toString() {
