@@ -1,0 +1,19 @@
+<div class="oj-hybrid-padding">
+  <h1>Incidents Content Area</h1>
+  <div>
+      To change the content of this section, you will make edits to the incidents.html file located in the /ts/views folder.
+  </div>
+  <h1>User Information</h1>
+
+  <oj-table
+  id="table"
+  aria-label="Departments Table"
+  accessibility.row-header="depName"
+  data="[[dataprovider]]"
+  columns-default='{"sortable": "disabled"}'
+  columns='[{"headerText": "Dept Id", "field": "id", "id": "depId"},
+            {"headerText": "Dept Name", "field": "name", "id": "depName"},
+            {"headerText": "Manager Id", "field": "username", "id": "manId"}]'
+  class="demo-table-container"></oj-table>
+  </oj-table>
+</div>

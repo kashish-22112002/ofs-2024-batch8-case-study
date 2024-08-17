@@ -1,0 +1,167 @@
+<!--
+  Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+  Licensed under The Universal Permissive License (UPL), Version 1.0
+  as shown at https://oss.oracle.com/licenses/upl/
+  -->
+  <div class="oj-hybrid-padding">
+    <h3>Registration Form</h3>
+    <oj-c-form-layout
+                    id="formLayoutOptions"
+                    max-columns="2"
+                    direction="row"
+                    user-assistance-density="compact">
+    <div>
+      <b>Enter First Name</b>
+      <oj-c-input-text
+                id="text-input"
+                value="{{firstname}}"
+                label-hint="Enter first name"
+                label-edge="inside">
+      </oj-c-input-text>
+    </div>
+
+    <div>
+      <b>Enter Last Name</b>
+      <oj-c-input-text
+                id="text-input"
+                value="{{lastname}}"
+                label-hint="Enter last name"
+                label-edge="inside">
+      </oj-c-input-text>
+    </div>
+
+    <div>
+      <b>Enter Salary</b>
+      <oj-c-input-number
+                  value="{{salary}}"
+                  label-hint="Enter salary"
+                  min="0"
+                  step="0">
+      </oj-c-input-number>
+    </div>
+
+    <div>
+      <b>Enter Password</b>
+      <oj-c-input-password label-hint="Enter Password"></oj-c-input-password>
+    </div>
+
+    <div>
+      <b>Enter Date</b>
+      <oj-input-date label-hint="Date" autocomplete="off"></oj-input-date>
+    </div>
+
+  </oj-c-form-layout>
+  <oj-messages
+                    class="oj-color-invert"
+                    messages="[[messagesDataprovider]]"
+                    position="{}"
+                    display="notification"
+                    display-options.category="none">
+          </oj-messages>
+
+  <!-- <div>
+    <oj-button id="button1" class="oj-sm-margin-4x-top" >Register</oj-button>
+</div> -->
+
+<h5>Button</h5>
+    <oj-c-button
+      id="button1"
+      on-oj-action="[[buttonAction]]"
+      disabled="[[firstname()==null || firstname().trim()==='']]"
+      label = "Submit"
+      ></oj-c-button
+    >
+
+<div>
+  <oj-progress-bar
+  class="oj-sm-margin-4x-top"
+          id="progressBar"
+          value="[[indeterminate().length > 0 ? -1 : progressValue]]"></oj-progress-bar>
+</div>
+
+<!-- Table View -->
+<div>
+  <h2>Table</h2>
+  <oj-table
+            id="table"
+            aria-label="Departments Table"
+            accessibility.row-header="depName"
+            data="[[dataprovider]]"
+            selection-mode='{"row": "multiple", "column": "multiple"}'
+            dnd='{"reorder": {"columns": "enabled"}}'
+            scroll-policy="loadMoreOnScroll"
+            scroll-policy-options='{"fetchSize": 10}'
+            columns='[{"headerText": "Department Id", 
+                       "field": "DepartmentId",
+                       "headerClassName": "oj-sm-only-hide",
+                       "className": "oj-sm-only-hide",
+                       "resizable": "enabled",
+                       "id": "depId"},
+                      {"headerText": "Department Name", 
+                       "field": "DepartmentName",
+                       "resizable": "enabled",
+                       "id": "depName"},
+                      {"headerText": "Location Id", 
+                       "field": "LocationId",
+                       "headerClassName": "oj-sm-only-hide",
+                       "className": "oj-sm-only-hide",
+                       "resizable": "enabled",
+                       "id": "locId"},
+                      {"headerText": "Manager Id", 
+                       "field": "ManagerId",
+                       "resizable": "enabled",
+                       "id": "manId"},
+                      {"headerText": "Employee Count", 
+                       "field": "EmployeeCount",
+                       "headerClassName": "oj-md-down-hide",
+                       "className": "oj-md-down-hide",
+                       "resizable": "enabled",
+                       "id": "empCount"}]'
+            class="demo-table-container"></oj-table>
+</div>
+
+
+<!-- List View -->
+<div>
+  <h2>List</h2>
+  <oj-c-list-view
+              id="listview"
+              aria-label="list to show selection features"
+              data="[[dataProvider]]"
+              selection-mode="single"
+              selected="{{selectedItems}}"
+              on-selected-changed="[[handleSelectedChanged]]">
+              <template slot="itemTemplate" data-oj-as="item">
+                <oj-c-list-item-layout>
+                  <span class="oj-typography-body-md oj-text-color-primary">
+                    <oj-bind-text value="[[item.item.data.name]]"></oj-bind-text>
+                  </span>
+                  <oj-c-avatar slot="leading" size="xs" src="[[item.item.data.image]]"></oj-c-avatar>
+                  <span slot="secondary" class="oj-typography-body-sm oj-text-color-secondary">
+                    <oj-bind-text value="[[item.item.data.title]]"></oj-bind-text>
+                  </span>
+                </oj-c-list-item-layout>
+              </template>
+            </oj-c-list-view>
+            <div class="oj-typography-body-sm oj-text-color-secondary">
+              <br />
+              <label for="curr-selection">Current Selection:&nbsp;</label>
+              <span id="curr-selection-value">
+                <oj-bind-text value="[[getDisplayValue(selectedItems())]]"></oj-bind-text>
+              </span>
+              <br />
+              <br />
+              <label for="selected-item-ids">IDs from Selected Change Event:&nbsp;</label>
+              <span id="selected-item-ids-value">
+                <oj-bind-text value="[[ko.toJSON(selectedIds)]]"></oj-bind-text>
+              </span>
+            </div>
+</div>
+
+<div>
+  <h2>Paging</h2>
+
+</div>
+
+
+  </div>
