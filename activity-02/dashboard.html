@@ -1,0 +1,47 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <div class="oj-hybrid-padding">
+  <h1>Retistration Form</h1>
+  <div>
+  <oj-c-form-layout 
+                  id="formLayoutOptions"
+                  max-columns="2"
+                  direction="row"
+                  user-assistance-density="compact">
+  
+    <oj-c-input-text
+              id="text-input"
+              value="{{firstname}}"
+              label-hint="Enter First name  "
+              label-edge="inside"></oj-c-input-text>
+
+              <!-- <oj-c-input-text
+               id="text-input"
+             value="[[salary]]"
+              label-hint="Enter Salary "
+              label-edge="inside"></oj-c-input-text> -->
+
+              <oj-c-input-number
+                value="{{salary}}"
+                label-hint="Enter Salary"
+                min="0"
+                max="1000000"
+                step="0"></oj-c-input-number>
+
+               
+                  <oj-c-input-password label-hint="Enter password" value="{{password}}" label-hint="password"></oj-c-input-password>
+                  <oj-input-date label-hint="Enter date" value="{{date}}"  autocomplete="off"></oj-input-date>
+
+                  <h6>
+                    Hey! <oj-bind-text value="[[firstname]]"></oj-bind-text><br>
+                    Your Salary is  <oj-bind-text value="[[salary]]"></oj-bind-text><br>
+                    Your password is  <oj-bind-text value="[[password]]"></oj-bind-text><br>
+                    Your Date of Birth is  <oj-bind-text value="[[date]]"></oj-bind-text><br>
+                  </h6>
+    
+</oj-c-form-layout>
+</div>
+</div>
