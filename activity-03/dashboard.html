@@ -1,0 +1,63 @@
+<div class="oj-hybrid-padding">
+  <h1>Registration Form</h1>
+  <div>
+    <oj-c-form-layout
+      id="formLayoutOptions"
+      max-columns="2"
+      direction="row"
+      user-assistance-density="compact"
+    >
+      <oj-c-input-text
+        id="text-input"
+        value="{{firstname}}"
+        label-hint="Enter First Name"
+        label-edge="inside"
+      ></oj-c-input-text>
+
+      <oj-c-input-number
+        value="{{salary}}"
+        label-hint="Enter Salary"
+        min="0"
+        max="1000000"
+        step="0"
+      ></oj-c-input-number>
+
+      <oj-c-input-password
+        label-hint="Enter password"
+        value="{{password}}"
+        label-hint="password"
+      ></oj-c-input-password>
+
+      <oj-input-date
+        label-hint="Enter date"
+        value="{{date}}"
+        autocomplete="off"
+      ></oj-input-date>
+
+      <h6>
+        Hello <oj-bind-text value="[[firstname]]"></oj-bind-text><br/>
+        Your Salary is <oj-bind-text value="[[salary]]"></oj-bind-text><br/>
+        Your Password is <oj-bind-text value="[[password]]"></oj-bind-text><br/>
+        Your Date of Birth is <oj-bind-text value="[[date]]"></oj-bind-text><br/>
+      </h6>
+
+      <oj-c-message-banner
+        data="[[personalInformationMessages]]" type="section"
+        on-oj-close="[[closePersonalInformationMessage]]" 
+      ></oj-c-message-banner>
+
+      <oj-c-progress-bar
+        class="oj-sm-margin-4x-bottom demo-width"
+        id="progressBar"
+        value="{{progressValue}}"
+      ></oj-c-progress-bar>
+    </oj-c-form-layout>
+
+    <oj-c-button
+      id="button1"
+      label="Submit"
+      on-oj-action="[[buttonClick]]"
+    ></oj-c-button>
+
+  </div>
+</div>
