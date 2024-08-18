@@ -1,0 +1,112 @@
+<div class="oj-hybrid-padding">
+    <h1 data-bind="text: pageTitle"></h1>
+
+    <!-- ko if: isLoginPage -->
+    <div>
+        <oj-c-form-layout 
+            id="formLayoutOptions"
+            max-columns="1"
+            direction="row"
+            user-assistance-density="compact">
+        
+            <!-- Username Input for Login -->
+            <oj-c-input-text
+                id="login-username"
+                value="{{loginUsername}}"
+                label-hint="Enter Username"
+                label-edge="inside"></oj-c-input-text>
+        
+            <!-- Password Input for Login -->
+            <oj-c-input-password
+                id="login-password"
+                value="{{loginPassword}}"
+                label-hint="Enter Password"></oj-c-input-password>
+
+            <!-- Login Button -->
+            <oj-button id="loginButton" on-oj-action="[[login]]">Login</oj-button>
+        
+            <!-- Error or Success Messages -->
+            <div id="message" class="oj-sm-margin-top-2x">
+                <oj-bind-text value="[[message]]"></oj-bind-text>
+            </div>
+        </oj-c-form-layout>
+
+        <!-- Link to switch to Registration Page -->
+        <div class="oj-sm-margin-top-2x">
+            <a href="#" data-bind="click: showRegisterPage">Don't have an account? Register here</a>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: isRegisterPage -->
+    <div>
+        <oj-c-form-layout 
+            id="formLayoutOptions"
+            max-columns="2"
+            direction="row"
+            user-assistance-density="compact">
+
+            <!-- Registration Form Inputs -->
+            <oj-c-input-text
+                id="firstName"
+                value="{{regFirstName}}"
+                label-hint="Enter First Name"
+                label-edge="inside"></oj-c-input-text>
+
+            <oj-c-input-text
+                id="lastName"
+                value="{{regLastName}}"
+                label-hint="Enter Last Name"
+                label-edge="inside"></oj-c-input-text>
+
+            <oj-c-input-text
+                id="dateOfBirth"
+                value="{{regDateOfBirth}}"
+                label-hint="Enter DOB"
+                label-edge="inside"></oj-c-input-text>
+
+            <oj-c-input-text
+                id="address"
+                value="{{regAddress}}"
+                label-hint="Enter Address"
+                label-edge="inside"></oj-c-input-text>
+
+            <oj-c-input-text
+                id="email"
+                value="{{regEmail}}"
+                label-hint="Enter Email"
+                label-edge="inside"></oj-c-input-text>
+
+            <oj-c-input-text
+                id="phoneNumber"
+                value="{{regPhoneNumber}}"
+                label-hint="Enter Phone Number"
+                label-edge="inside"></oj-c-input-text>
+
+            <oj-c-input-text
+                id="register-username"
+                value="{{regUsername}}"
+                label-hint="Enter Username"
+                label-edge="inside"></oj-c-input-text>
+
+            <oj-c-input-password
+                id="register-password"
+                value="{{regPassword}}"
+                label-hint="Enter Password"></oj-c-input-password>
+
+            <!-- Register Button -->
+            <oj-button id="registerButton" on-oj-action="[[register]]">Register</oj-button>
+
+            <!-- Error or Success Messages -->
+            <div id="message" class="oj-sm-margin-top-2x">
+                <oj-bind-text value="[[message]]"></oj-bind-text>
+            </div>
+        </oj-c-form-layout>
+
+        <!-- Link to switch to Login Page -->
+        <div class="oj-sm-margin-top-2x">
+            <a href="#" data-bind="click: showLoginPage">Already have an account? Login here</a>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
